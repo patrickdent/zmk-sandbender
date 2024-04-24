@@ -1,7 +1,7 @@
 if SHIELD_SANDBENDER_E_V0_LEFT
 
 config ZMK_KEYBOARD_NAME
-    default "sandbender"
+    default "sndbndr_e_v0"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
