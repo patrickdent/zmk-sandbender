@@ -1,0 +1,5 @@
+config SHIELD_SANDBENDER_B_V0_LEFT
+    def_bool $(shields_list_contains,sandbender_b_v0_left)
+
+config SHIELD_SANDBENDER_B_V0_RIGHT
+    def_bool $(shields_list_contains,sandbender_b_v0_right)
