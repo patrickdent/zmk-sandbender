@@ -1,7 +1,7 @@
 #include "sandbender_e_v0.dtsi"
 // https://github.com/zmkfirmware/zmk/blob/main/app/boards/arm/nice_nano/arduino_pro_micro_pins.dtsi
 &kscan0 {
-    diode-direction = "row2col";
+    diode-direction = "col2row";
 
     // top to bottom actually -- called col in schematic for some reason
     row-gpios
