@@ -1,0 +1,12 @@
+file_format: "1"
+id: sandbender_b
+name: sandbender_b
+type: shield
+url: https://github.com/duckyb/urchin
+requires: [pro_micro]
+features:
+  - keys
+  - barrel encoder
+siblings:
+  - sandbender_b_left
+  - sandbender_b_right

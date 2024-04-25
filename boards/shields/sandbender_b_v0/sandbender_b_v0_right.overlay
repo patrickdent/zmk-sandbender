@@ -1,0 +1,77 @@
+#include "sandbender_b_v0.dtsi"
+
+// The ZMK Nice!nano layout, maps pins to align with the green numbers in the
+// official pin-out schematic:
+//                      https://nicekeyboards.com/docs/nice-nano/pinout-schematic
+// I find that the face-down reference is easier to understand when visualizing
+// the board:
+//    ╭──────────────╮
+//    |bat        gnd|    ╭──────────┬──────────┬──────────┬──────────╮
+//    |bat          1|    |  Y       │  U       │  I       │  O       │
+//    |gnd          0|    ├──────────┼──────────┼──────────┼──────────┼──────────┬──────────╮
+//    |reset      gnd|    │  H       │  J       │  K       │  L       │ ' "      │  P       │
+//    |.3v        gnd|    ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────╯
+//    |21           2|    │  N       │  M       │ , <      │ . >      │ / ?      │
+//    |20           3|    ├──────────┼──────────┼──────────┼──────────┴──────────╯
+//    |19           4|    |  scroll  | spce     | enter    |
+//    |18        |< 5|col ╰──────────┴──────────┴──────────╯
+// row|15 |<     |< 6|col
+// row|14 |<     |< 7|col
+// row|16 |<     |< 8|col
+// row|10 |<     |< 9|col
+//    ╰──────────────╯
+
+&default_transform {
+    col-offset = <6>;
+};
+
+&kscan0 {
+    diode-direction = "col2row"; // col2row = row must have GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN to receive signals
+
+    row-gpios
+        = <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+    ;
+
+    // left to right -- called row in schematic for some reason
+    col-gpios
+        = <&pro_micro 4 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 5 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 6 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 7 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 8 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 9 GPIO_ACTIVE_HIGH>
+        ;
+};
+
+&encoder_right {
+    status = "okay";
+};
+
+&pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 29)>,
+                <NRF_PSEL(SPIM_MOSI, 0, 31)>,
+                <NRF_PSEL(SPIM_MISO, 0, 25)>;
+        };
+    };
+    spi0_sleep: spi0_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 29)>,
+                <NRF_PSEL(SPIM_MOSI, 0, 31)>,
+                <NRF_PSEL(SPIM_MISO, 0, 25)>;
+            low-power-enable;
+        };
+    };
+};
+
+nice_view_spi: &spi0 {
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&pro_micro 19 GPIO_ACTIVE_HIGH>;
+};
