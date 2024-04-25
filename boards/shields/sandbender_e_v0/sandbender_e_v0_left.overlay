@@ -1,18 +1,18 @@
 #include "sandbender_e_v0.dtsi"
 // https://github.com/zmkfirmware/zmk/blob/main/app/boards/arm/nice_nano/arduino_pro_micro_pins.dtsi
 &kscan0 {
-    diode-direction = "row2col";
+    diode-direction = "col2row";
 
     // top to bottom actually -- called col in schematic for some reason
-    row-gpios
+    col-gpios
         = <&pro_micro 6 (GPIO_ACTIVE_HIGH)>  // COL 1 (TOP)
         , <&pro_micro 7 (GPIO_ACTIVE_HIGH)>  // COL 2 (MID)
         , <&pro_micro 8 (GPIO_ACTIVE_HIGH)>  // COL 3 (LOWER)
         , <&pro_micro 9 (GPIO_ACTIVE_HIGH)>  // COL 4 (THUMB + ROT)
     ;
 
+    row-gpios
     // left to right -- called row in schematic for some reason
-    col-gpios
         = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // ROW 0 (outer)
         , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // ROW 1 (pinky)
         , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // ROW 2 (ring)
