@@ -1,4 +1,4 @@
-if SHIELD_SANDBENDER_B_V0_LEFT
+if SHIELD_SANDBENDER_B_V0_RIGHT
 
 config ZMK_KEYBOARD_NAME
     default "sndbndr_b_v0"
