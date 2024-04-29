@@ -1,0 +1,117 @@
+// Copyright (c) 2024 Patrick Dent
+// SPDX-License-Identifier: MIT
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define DEFAULT 0
+#define L_MODS 1
+#define R_MODS 2
+#define R_NUM 3
+#define L_SPEC 4
+#define BT_CTL 5
+
+/ {
+    behaviors {
+        ht: hold_tap {
+            label = "hold_tap";
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <150>;
+            quick-tap-ms = <100>;
+            global-quick-tap;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer { // 0
+            bindings = <
+        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────╮
+        // |  Q       │  W       │  E       │  R       │  T       │   │  Y       │  U       │  I       │  O       │
+            &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O
+        // ╭──────────┼──────────┼──────────┼──────────┼──────────┤   ├─────────────────────┼──────────┼──────────┼──────────┬──────────╮
+        // │  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │ ' "      │  P       │
+            &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L      &kp SEMI    &kp P
+        // ╰──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────╯
+        // │  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
+            &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
+        // ╰──────────┴─────────┬┴──────────┴────┬─────┴──────────┤   ├──────────┴─────┬────┴──────────┴┬─────────┴──────┬───╯
+                                 &lt R_NUM DEL    &lt L_MODS BSPC      &to R_NUM        &lt R_MODS SPACE &lt L_SPEC ENTER
+        //                      ╰────────────────┴────────────────╯   ╰────────────────┴────────────────┴────────────────╯
+            >;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+        };
+
+        left_mods { // 1
+            bindings = <
+        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────╮
+        // │ XXXXXX   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ bt lyr   │   │          │          │          │          │
+            &none      &none      &none      &none      &mo BT_CTL     &trans     &trans     &trans     &trans
+        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├─────────────────────┼──────────┼──────────┼──────────┬──────────╮
+        // │ Shift    │  Control │  GUI     │  Alt     │ Tab      │   │          │          │          │          │          │          |
+            &sk LSHIFT &sk LCTRL  &sk LGUI   &sk LALT   &kp TAB        &trans     &trans     &trans     &trans     &trans    &trans
+        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────╯
+        // │ Escape   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │          │          │          │          │          │
+            &kp ESC    &none      &none      &none      &none          &trans     &trans     &trans     &trans     &trans
+        // ╰──────────┴─────────┬┴──────────┴────┬─────┴──────────┤   ├──────────┴─────┬────┴──────────┴┬─────────┴──────┬───╯
+                                 &none            &trans               &to R_NUM        &kp SPACE        &kp ENTER
+        //                      ╰────────────────┴────────────────╯   ╰────────────────┴────────────────┴────────────────╯
+            >;
+        };
+
+        right_mods { // 2
+            bindings = <
+        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────╮
+        // │          │          │          │          │          │   │ XXXXXX   |  XXXXXX  │  XXXXXX  │ XXXXXX   │
+            &trans     &trans     &trans     &trans     &trans         &none       &none      &none     &none
+        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├─────────────────────┼──────────┼──────────┼──────────┬──────────╮
+        // │          │          │          │          │          │   │ Tab      │  Alt     │  GUI     │ Control  │ Shift    │ Caps Word│
+            &trans     &trans     &trans     &trans     &trans         &kp TAB    &sk RALT   &sk RGUI   &sk RCTRL  &sk RSHIFT &caps_word
+        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────╯
+        // │          │          │          │          │          │   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │ Escape   │
+            &trans     &trans     &trans     &trans     &trans         &none      &none      &none      &none      &kp ESC
+        // ╰──────────┴─────────┬┴──────────┴────┬─────┴──────────┤   ├──────────┴─────┬────┴──────────┴┬─────────┴──────┬───╯
+                                 &kp DEL          &kp BSPC             &none            &trans           &none
+        //                      ╰────────────────┴────────────────╯   ╰────────────────┴────────────────┴────────────────╯
+            >;
+        };
+
+        right_num { // 3
+            bindings = <
+        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────╮
+        // │ XXXXXX   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │ XXXXXX   │ 7        │ 8        │ 9        │
+            &none      &none      &none      &none      &none          &none      &kp N7     &kp N8     &kp N9
+        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├─────────────────────┼──────────┼──────────┼──────────┬──────────╮
+        // │ Shift    │  Control │  GUI     │  Alt     │ Tab      │   │ XXXXXX   │ 4        │ 5        │ 6        │ Equals   │ Shift    │
+            &sk LSHIFT &sk LCTRL  &sk LGUI   &sk LALT   &kp TAB        &none      &kp N4     &kp N5     &kp N6     &kp EQUAL  &sk RSHIFT
+        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────╯
+        // │ Escape   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │ 0        │ 1        │ 2        │ 3        │ Minus    │
+            &kp ESC    &none      &none      &none      &none          &kp N0     &kp N1     &kp N2     &kp N3     &kp MINUS
+        // ╰──────────┴─────────┬┴──────────┴────┬─────┴──────────┤   ├──────────┴─────┬────┴──────────┴┬─────────┴──────┬───╯
+                                 &trans           &none                &to DEFAULT      &kp SPACE        &kp ENTER
+        //                      ╰────────────────┴────────────────╯   ╰────────────────┴────────────────┴────────────────╯
+            >;
+        };
+
+        left_special { // 4
+            bindings = <
+        // ╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────╮
+        // │ XXXXXX   │ XXXXXX   │  Up      │ XXXXXX   │ Backslsh │   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │
+            &none      &none      &kp UP     &none      &kp BSLH       &none      &none      &none      &none
+        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├─────────────────────┼──────────┼──────────┼──────────┬──────────╮
+        // │ Grave    │ Left     │ Down     │ Right    │ XXXXXX   │   │  Tab     │  Alt     │  GUI     │ Control  │ Shift    │ XXXXXX   |
+            &kp GRAVE  &kp LEFT   &kp DOWN   &kp RIGHT  &none          &kp TAB    &sk RALT   &sk RGUI   &sk RCTRL  &sk RSHIFT &none
+        // ├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────╯
+        // │ Quote    │ [        │ ]        │  (       │  )       │   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │ Escape   │
+            &kp SQT    &kp LBKT   &kp RBKT   &kp LPAR   &kp RPAR       &none      &none      &none      &none      &kp ESC
+        // ╰──────────┴─────────┬┴──────────┴────┬─────┴──────────┤   ├──────────┴─────┬────┴──────────┴┬─────────┴──────┬───╯
+                                 &kp DEL          &kp BSPC             &none            &none            &trans
+        //                      ╰────────────────┴────────────────╯   ╰────────────────┴────────────────┴────────────────╯
+            >;
+        };
+    };
+};

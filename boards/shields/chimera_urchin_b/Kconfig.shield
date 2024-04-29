@@ -1,0 +1,5 @@
+config SHIELD_CHIMERA_URCHIN_B_LEFT
+    def_bool $(shields_list_contains,chimera_urchin_b_left)
+
+config SHIELD_CHIMERA_URCHIN_B_RIGHT
+    def_bool $(shields_list_contains,chimera_urchin_b_right)

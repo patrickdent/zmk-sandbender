@@ -19,6 +19,8 @@
 ---
 include:
   - board: nice_nano_v2
+    shield: settings_reset
+  - board: nice_nano_v2
     shield: sandbender_b_v0_left nice_view_adapter nice_view
   - board: nice_nano_v2
     shield: sandbender_b_v0_right nice_view_adapter nice_view
@@ -27,4 +29,6 @@ include:
   - board: nice_nano_v2
     shield: urchin_right nice_view_adapter nice_view
   - board: nice_nano_v2
-    shield: settings_reset
+    shield: chimera_urchin_b_left nice_view_adapter nice_view
+  - board: nice_nano_v2
+    shield: chimera_urchin_b_right nice_view_adapter nice_view
