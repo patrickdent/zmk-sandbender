@@ -82,7 +82,7 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│ XXXXXX   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │ XXXXXX   │ 7        │ 8        │ 9        │ Default  │
-            &none       &none      &none      &none      &none          &none      &kp N7     &kp N8     &kp N9   &to DEFAULT
+            &bt BT_CLR  &none      &none    &bt BT_PRV &bt BT_NXT      &none      &kp N7     &kp N8     &kp N9   &to DEFAULT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ Shift    │  Control │  GUI     │  Alt     │ Tab      │   │ XXXXXX   │ 4        │ 5        │ 6        │ Equals   │
            &kp LSHIFT  &kp LCTRL  &kp LGUI   &kp LALT   &kp TAB        &none      &kp N4     &kp N5     &kp N6     &kp EQUAL
