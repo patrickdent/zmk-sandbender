@@ -1,7 +1,7 @@
 # Copyright (c) 2022 Duccio Breschi
 # SPDX-License-Identifier: MIT
 
-if SHIELD_URCHIN_LEFT
+if SHIELD_URCHIN_LEFT || SHIELD_URCHIN_DONGLE
 
 config ZMK_KEYBOARD_NAME
     default "urchin"
@@ -11,7 +11,7 @@ config ZMK_SPLIT_ROLE_CENTRAL
 
 endif
 
-if SHIELD_URCHIN_LEFT || SHIELD_URCHIN_RIGHT
+if SHIELD_URCHIN_LEFT || SHIELD_URCHIN_RIGHT || SHIELD_URCHIN_DONGLE
 config ZMK_SPLIT
     default y
 endif
