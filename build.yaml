@@ -26,7 +26,7 @@ include:
   #   shield: urchin_left nice_view_adapter nice_view
   # - board: nice_nano//zmk
   #   shield: urchin_right nice_view_adapter nice_view
-  # Dongle mode: flash left_peripheral + dongle; right half uses existing urchin_right firmware
+
   - board: nice_nano//zmk
     shield: urchin_left nice_view_adapter nice_view
     artifact-name: urchin_left_peripheral nice_view_adapter nice_view
