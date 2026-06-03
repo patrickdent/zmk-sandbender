@@ -52,7 +52,7 @@
         //     &none       &none      &none      &none     &mo BT_CTL     &trans     &trans     &trans     &trans     &trans
         // //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // //│ Shift    │  Control │  GUI     │  Alt     │ Tab      │   │          │          │          │          │          │
-        //     &sk LSHIFT  &sk LCTRL  &sk LGUI   &sk LALT  &kp TAB        &trans     &trans     &trans     &trans     &trans
+        //     &kp LSHIFT  &kp LCTRL  &kp LGUI   &kp LALT  &kp TAB        &trans     &trans     &trans     &trans     &trans
         // //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // //│ Escape   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │          │          │          │          │          │
         //     &kp ESC     &none      &none      &none     &none          &trans     &trans     &trans     &trans     &trans
@@ -69,7 +69,7 @@
         //     &trans     &trans     &trans     &trans     &trans         &none       &none      &none     &none      &caps_word
         // //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // //│          │          │          │          │          │   │ Tab      │  Alt     │  GUI     │ Control  │ Shift    │
-        //     &trans     &trans     &trans     &trans     &trans         &kp TAB    &sk RALT   &sk RGUI   &sk RCTRL &sk RSHIFT
+        //     &trans     &trans     &trans     &trans     &trans         &kp TAB    &kp RALT   &kp RGUI   &kp RCTRL &kp RSHIFT
         // //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // //│          │          │          │          │          │   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │ Escape   │
         //     &trans     &trans     &trans     &trans     &trans          &none      &none      &none     &none      &kp ESC
@@ -86,7 +86,7 @@
         //     &none       &none      &none      &none      &none          &none      &kp N7     &kp N8     &kp N9   &to DEFAULT
         // //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // //│ Shift    │  Control │  GUI     │  Alt     │ Tab      │   │ XXXXXX   │ 4        │ 5        │ 6        │ Equals   │
-        //    &sk LSHIFT  &sk LCTRL  &sk LGUI   &sk LALT   &kp TAB        &none      &kp N4     &kp N5     &kp N6     &kp EQUAL
+        //    &kp LSHIFT  &kp LCTRL  &kp LGUI   &sk LALT   &kp TAB        &none      &kp N4     &kp N5     &kp N6     &kp EQUAL
         // //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // //│ Escape   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │ 0        │ 1        │ 2        │ 3        │ Minus    │
         //     &kp ESC     &none      &none      &none     &none          &kp N0     &kp N1     &kp N2     &kp N3     &kp MINUS

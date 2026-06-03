@@ -10,7 +10,6 @@
 #define R_MODS 2
 #define R_NUM 3
 #define L_SPEC 4
-#define BT_CTL 5
 
 / {
     behaviors {
@@ -48,8 +47,8 @@
         left_mods { // 1
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ XXXXXX   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ bt lyr   │   │          │          │          │          │          │
-            &none       &none      &none      &none     &mo BT_CTL     &trans     &trans     &trans     &trans     &trans
+        //│ XXXXXX   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │          │          │          │          │          │
+            &none       &none      &none      &none     &none          &trans     &trans     &trans     &trans     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ Shift    │  Control │  GUI     │  Alt     │ Tab      │   │          │          │          │          │          │
             &sk LSHIFT  &sk LCTRL  &sk LGUI   &sk LALT  &kp TAB        &trans     &trans     &trans     &trans     &trans
@@ -83,10 +82,10 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│ XXXXXX   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │ XXXXXX   │ 7        │ 8        │ 9        │ Default  │
-            &none       &none      &none      &none      &none          &none      &kp N7     &kp N8     &kp N9   &to DEFAULT
+            &bt BT_CLR  &none      &none    &bt BT_PRV &bt BT_NXT      &none      &kp N7     &kp N8     &kp N9   &to DEFAULT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ Shift    │  Control │  GUI     │  Alt     │ Tab      │   │ XXXXXX   │ 4        │ 5        │ 6        │ Equals   │
-           &sk LSHIFT  &sk LCTRL  &sk LGUI   &sk LALT   &kp TAB        &none      &kp N4     &kp N5     &kp N6     &kp EQUAL
+           &kp LSHIFT  &kp LCTRL  &kp LGUI   &kp LALT   &kp TAB        &none      &kp N4     &kp N5     &kp N6     &kp EQUAL
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ Escape   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │   │ 0        │ 1        │ 2        │ 3        │ Minus    │
             &kp ESC     &none      &none      &none     &none          &kp N0     &kp N1     &kp N2     &kp N3     &kp MINUS
@@ -103,30 +102,13 @@
             &none      &none       &kp UP     &none      &kp BSLH        &none      &none      &none    &none      &to R_NUM
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ Grave    │ Left     │ Down     │ Right    │ XXXXXX   │   │  Tab     │  Alt     │  GUI     │ Control  │ Shift    │
-            &kp GRAVE  &kp LEFT   &kp DOWN   &kp RIGHT  &none           &kp TAB    &sk RALT  &sk RGUI  &sk RCTRL  &sk RSHIFT
+            &kp GRAVE  &kp LEFT   &kp DOWN   &kp RIGHT  &none           &kp TAB    &kp RALT  &kp RGUI  &kp RCTRL  &kp RSHIFT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ Quote    │ [        │ ]       │  (       │  )        │   │  XXXXXX  │  XXXXXX  │  XXXXXX  │ XXXXXX   │ Escape   │
             &kp SQT    &kp LBKT   &kp RBKT   &kp LPAR   &kp RPAR        &none      &none      &none     &none      &kp ESC
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &kp DEL    &kp BSPC         &none     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        };
-
-        bt_controls { // 5
-            bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
-        //│ XXXXXX   │ XXXXXX   │ XXXXXX   │ XXXXXX   │          │   │ bt prof 0    │ bt prof 1    │ bt prof 2    │ bt prof      │ bt prof 4    │
-            &none      &none      &none      &none      &trans         &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
-        //│ XXXXXX   │ XXXXXX   │ XXXXXX   │ XXXXXX   │ XXXXXX   │   │ XXXXXX       │ XXXXXX       │ XXXXXX       │ XXXXXX       │ XXXXXX       │
-            &none      &none       &none     &none      &none          &none          &none          &none          &none          &none
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
-        //│  XXXXXX  │ XXXXXX   │ XXXXXX   │ XXXXXX   │ XXXXXX   │   │ XXXXXX       │ XXXXXX       │ XXXXXX       │ XXXXXX       │ XXXXXX       │
-            &none      &none       &none     &none      &none          &none          &none          &none          &none          &none
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────────┼──────────────┼──────────────┴──────────────┴──────────────╯
-                                             &none      &trans         &none          &bt BT_CLR
-        //                                 ╰──────────┴──────────╯   ╰──────────────┴──────────────╯
             >;
         };
     };
